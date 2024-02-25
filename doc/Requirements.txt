@@ -1,0 +1,20 @@
+## Projeto - Registros de estoque
+
+*Objetivo
+ Neste projeto precisamos criar um sistema que podemos gerenciar cadastros de produtos
+ e controlar o saldo de forma simples.
+ Portanto não teremos controle de estoques/depósitos, assim podemos controlar o saldo
+ em um campo no cadastro do produto.
+ Porém, temos algumas regras para manter o bom funcionamento.
+  - O código do item deve ser único.
+  - Não podemos atualizar o código de um item já criado.
+  - Não podemos excluir um produto que ainda tem saldo.
+  - Não podemos deixar o saldo do item negativo.
+  - Podemos inativar um item ativo sem restrição
+  - Podemos ativar um item inativo sem restrição
+  - Não podemos atualizar item inativo
+
+
+*Requisitos
+  - Atributos (Código | Nome | Descrição | Observações | Status | Saldo)
+  - Métodos (Adicionar | Atualizar | Excluir | Inativar | Ativar)
