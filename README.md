@@ -1,24 +1,21 @@
 ## TDD
 A sigla *TDD* vai te acompanhar na sua carreira como developer. <br>
 Ela significa Test Driven Development (ou Desenvolvimento Orientado a Testes). <br>
-Basicamente, ela ajuda a aumentar a produtividade a partir de testes já consolidados. <br>
-<br>
-<br>
+Basicamente, ela ajuda a aumentar a produtividade a partir de testes já consolidados. 
+
 ## Projeto 
-Seguindo a ideia do TDD estou trabalhando em ciclos neste projeto em C#. <br>
-*Estes ciclos ocorrem na seguinte ordem:* <br>
-- (RED) Primeiro, eu devo criar um teste unitário que inicialmente irá falhar pois o código ainda não foi implementado. <br>
-- (GREEN) Segundo passo é criar o código que satisfaça esse teste, ou seja, implementar a funcionalidade em questão. <br>
-- (REFACTOR) Terceiro passo é continuar refatorando o teste e passar por todas as etapas novamente até que cubra os requisitos definidos. <br>
-<br>
-<br>
+Seguindo a ideia do TDD estou trabalhando em ciclos neste projeto em C#. 
+**Estes ciclos ocorrem na seguinte ordem:**
+- (RED) Primeiro, eu devo criar um teste unitário que inicialmente irá falhar pois o código ainda não foi implementado. 
+- (GREEN) Segundo passo é criar o código que satisfaça esse teste, ou seja, implementar a funcionalidade em questão. 
+- (REFACTOR) Terceiro passo é continuar refatorando o teste e passar por todas as etapas novamente até que cubra os requisitos definidos.
+
 ## Conteúdo
-- Visual Studio 2022 <br>
-- C# <br>
-- xUnit <br>
-- .NET 8 <br>
-- Git <br>
-<br>
-<br>
+- Visual Studio 2022 
+- C# 
+- xUnit 
+- .NET 8 
+- Git 
+
 ## Referência
 - Microsoft learn - TDD [https://learn.microsoft.com/pt-br/training/modules/visual-studio-test-concepts/5-testing-schools-of-thought]
