@@ -17,4 +17,4 @@
 
 *Requisitos
   - Atributos (Código | Nome | Descrição | Observações | Status | Saldo)
-  - Métodos (Adicionar | Atualizar | Excluir | Inativar | Ativar)
+  - Métodos (Listar | Adicionar | BuscarPorCódigo | Atualizar | Excluir | Inativar | Ativar)
