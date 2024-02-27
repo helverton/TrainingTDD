@@ -1,5 +1,6 @@
-﻿using System.Diagnostics;
-using System.Runtime.Intrinsics.X86;
+﻿using Domain.Enums;
+using Domain.Entities;
+using Application.Services.Products;
 
 namespace UseCases.Tests
 {
@@ -20,6 +21,7 @@ namespace UseCases.Tests
 
         //Testes de unidade para verificar funcionalidades específicas e garantir que o código funcione conforme o esperado
 
+
         [Fact]
         public void Product_Create_Success()
         {
@@ -32,27 +34,27 @@ namespace UseCases.Tests
 
 
             //Act
-            Product product = new Product(NewProduct.Name, NewProduct.Description);
+            Product product = new ProductService().Save(NewProduct.Name, NewProduct.Description);
 
 
             //Assert
             Assert.NotNull(product);
-            Assert.Equal(product.Name, NewProduct.Name);
-            Assert.Equal(product.Description, NewProduct.Description);
+            Assert.Equal(NewProduct.Name, product.Name);
+            Assert.Equal(NewProduct.Description, product.Description);
         }
 
 
         [Fact]
-        public void Product_ListAll_Success()
+        public void Product_GetAll_Success()
         {
             //Arrange
-            Product prod1 = new Product("Produto 1", "Produto para teste 1, retornar lista de registros");
-            Product prod2 = new Product("Produto 2", "Produto para teste 2, retornar lista de registros");
-            Product prod3 = new Product("Produto 3", "Produto para teste 3, retornar lista de registros");
+            Product prod1 = new ProductService().Save("Produto 1", "Produto para teste 1, retornar lista de registros");
+            Product prod2 = new ProductService().Save("Produto 2", "Produto para teste 2, retornar lista de registros");
+            Product prod3 = new ProductService().Save("Produto 3", "Produto para teste 3, retornar lista de registros");
 
 
             //Act
-            List<Product> list = ProductService.GetAll();
+            List<Product> list = new ProductService().GetAll();
 
 
             //Assert
@@ -68,40 +70,58 @@ namespace UseCases.Tests
         public void Product_GetById_Success()
         {
             //Arrange
-            Product prod1 = new Product("Produto 1", "Produto para teste, buscar por id");
+            Product prod1 = new ProductService().Save("Produto 1", "Produto para teste, buscar por id");
             int id = prod1.Id;
 
 
             //Act
-            Product productFound = ProductService.GetById(id);
+            Product productFound = new ProductService().GetById(id);
 
 
             //Assert
             Assert.NotNull(productFound);
-            Assert.Equal(productFound.Name, prod1.Name);
-            Assert.Equal(productFound.Description, prod1.Description);
+            Assert.Equal(prod1.Name, productFound.Name);
+            Assert.Equal(prod1.Description, productFound.Description);
         }
 
 
         [Fact]
-        public void Product_Update_Success()
+        public void Product_UpdateName_Success()
         {
             //Arrange
-            int id = new Product("Produto 1", "Produto para teste, atualizar registro").Id;
-
-            Product productToUpdate = ProductService.GetById(id);
-            productToUpdate.Name = "Produto 1 atualizado";
-            productToUpdate.Description = "Produto para teste, registro atualizado";
+            int id = new ProductService().Save("Produto 1", "Produto para teste, atualizar registro").Id;
+            string name = "Produto 1 atualizado";
 
 
             //Act
-            ProductService.Update(productToUpdate);
+            bool result = new ProductService().UpdateName(id, name);
 
 
             //Assert
-            Product productUpdated = ProductService.GetById(id);
+            Assert.True(result);
+            Product productUpdated = new ProductService().GetById(id);
             Assert.NotNull(productUpdated);
-            Assert.Equal(productUpdated.Name, productToUpdate.Name);
+            Assert.Equal(name, productUpdated.Name);
+        }
+
+
+        [Fact]
+        public void Product_UpdateDescription_Success()
+        {
+            //Arrange
+            int id = new ProductService().Save("Produto 1", "Produto para teste, atualizar registro").Id;
+            string description = "Produto para teste, registro atualizado";
+
+
+            //Act
+            bool result = new ProductService().UpdateDescription(id, description);
+
+
+            //Assert
+            Assert.True(result);
+            Product productUpdated = new ProductService().GetById(id);
+            Assert.NotNull(productUpdated);
+            Assert.Equal(description, productUpdated.Description);
         }
 
 
@@ -109,20 +129,19 @@ namespace UseCases.Tests
         public void Product_UpdateStatus_Success()
         {
             //Arrange
-            int id = new Product("Produto 1", "Produto para teste, atualizar status", 1).Id;
-
-            Product productToUpdate = ProductService.GetById(id);
-            productToUpdate.Status = 0;
+            int id = new ProductService().Save("Produto 1", "Produto para teste, atualizar status").Id;
+            ProductStatus status = ProductStatus.Inativo;
 
 
             //Act
-            ProductService.UpdateStatus(productToUpdate);
+            bool result = new ProductService().UpdateStatus(id, status);
 
 
             //Assert
-            Product productUpdated = ProductService.GetById(id);
+            Assert.True(result);
+            Product productUpdated = new ProductService().GetById(id);
             Assert.NotNull(productUpdated);
-            Assert.Equal(productUpdated.Status, productToUpdate.Status);
+            Assert.Equal(status, productUpdated.Status);
         }
 
 
@@ -130,20 +149,21 @@ namespace UseCases.Tests
         public void Product_StockEntry_Success()
         {
             //Arrange
-            int id = new Product("Produto 1", "Produto para teste, aumentar estoque", 1).Id;
+            int id = new ProductService().Save("Produto 1", "Produto para teste, aumentar estoque").Id;
 
-            Product productToUpdate = ProductService.GetById(id);
-            int quantity = 5;
+            Product productToUpdate = new ProductService().GetById(id);
+            int quantity = +5;
 
 
             //Act
-            ProductService.StockEntry(productToUpdate, quantity);
+            bool result = new ProductService().StockEntry(id, quantity);
 
 
             //Assert
-            Product productUpdated = ProductService.GetById(id);
+            Assert.True(result);
+            Product productUpdated = new ProductService().GetById(id);
             Assert.NotNull(productUpdated);
-            Assert.Equal(productUpdated.Quantity, (productToUpdate.Quantity + quantity));
+            Assert.Equal(quantity, productUpdated.Quantity);
         }
 
 
@@ -151,21 +171,23 @@ namespace UseCases.Tests
         public void Product_StockIssue_Success()
         {
             //Arrange
-            int id = new Product("Produto 1", "Produto para teste, diminuir estoque", 1).Id;
+            int id = new ProductService().Save("Produto 1", "Produto para teste, diminuir estoque").Id;
+            new ProductService().StockEntry(id, +7);
 
-            Product productToUpdate = ProductService.GetById(id);
-            ProductService.StockEntry(productToUpdate, 5);
+            Product productToUpdate = new ProductService().GetById(id);
             int quantity = -2;
+            int quantityAftr = productToUpdate.Quantity + quantity;
 
 
             //Act
-            ProductService.StockIssue(productToUpdate, quantity);
+            bool result = new ProductService().StockIssue(id, quantity);
 
 
             //Assert
-            Product productUpdated = ProductService.GetById(id);
+            Assert.True(result);
+            Product productUpdated = new ProductService().GetById(id);
             Assert.NotNull(productUpdated);
-            Assert.Equal(productUpdated.Quantity, (productToUpdate.Quantity + quantity));
+            Assert.Equal(quantityAftr, productUpdated.Quantity);
         }
 
 
@@ -173,18 +195,18 @@ namespace UseCases.Tests
         public void Product_Delete_Success()
         {
             //Arrange
-            int id = new Product("Produto 1", "Produto para teste, excluir registro").Id;
-            Product productToDelete = ProductService.GetById(id);
+            int id = new ProductService().Save("Produto 1", "Produto para teste, excluir registro").Id;
 
 
             //Act
-            ProductService.Delete(productToDelete);
+            bool result = new ProductService().Delete(id);
 
 
             //Assert
-            List<Product> list = ProductService.GetAll();
+            Assert.True(result);
+            List<Product> list = new ProductService().GetAll();
             Assert.NotNull(list);
-            Assert.DoesNotContain(productToDelete, list);
+            Assert.Null(list.Find(x => x.Id == id));
         }
     }
 }
