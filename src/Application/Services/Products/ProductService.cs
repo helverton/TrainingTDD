@@ -7,14 +7,19 @@ namespace Application.Services.Products
 {
     public class ProductService : IProductRepository
     {
-        public ProductService() { }
+        private Product _product { get; set; }
+
+        public ProductService() => _product = new Product();
 
         public Product Save(string name, string description)
         {
-            Product product = new Product(name, description);
-            DbStaticForTesting.products.Add(product);
+            _product.SetName(name);
+            _product.SetDescription(description);
 
-            return product;
+
+            DbStaticForTesting.products.Add(_product);
+
+            return _product;
         }
 
         public List<Product> GetAll()
@@ -32,7 +37,7 @@ namespace Application.Services.Products
         {
             bool result = true;
 
-            DbStaticForTesting.products.Find(x => x.Id == id).UpdateName(name);
+            DbStaticForTesting.products.Find(x => x.Id == id).SetName(name);
 
             return result;
         }
@@ -41,7 +46,7 @@ namespace Application.Services.Products
         {
             bool result = true;
 
-            DbStaticForTesting.products.Find(x => x.Id == id).UpdateDescription(description);
+            DbStaticForTesting.products.Find(x => x.Id == id).SetDescription(description);
 
             return result;
         }
@@ -50,7 +55,7 @@ namespace Application.Services.Products
         {
             bool result = true;
 
-            DbStaticForTesting.products.Find(x => x.Id == id).UpdateStatus(status);
+            DbStaticForTesting.products.Find(x => x.Id == id).SetStatus(status);
 
             return result;
         }
@@ -59,7 +64,7 @@ namespace Application.Services.Products
         {
             bool result = true;
 
-            DbStaticForTesting.products.Find(x => x.Id == id).UpdateQuantity(quantity);
+            DbStaticForTesting.products.Find(x => x.Id == id).SetQuantity(quantity);
 
             return result;
         }
@@ -68,7 +73,7 @@ namespace Application.Services.Products
         {
             bool result = true;
 
-            DbStaticForTesting.products.Find(x => x.Id == id).UpdateQuantity(quantity);
+            DbStaticForTesting.products.Find(x => x.Id == id).SetQuantity(quantity);
 
             return result;
         }

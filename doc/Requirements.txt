@@ -6,13 +6,13 @@
  Portanto não teremos controle de estoques/depósitos, assim podemos controlar o saldo
  em um campo no cadastro do produto.
  Porém, temos algumas regras para manter o bom funcionamento.
-  - O código do item deve ser único.
-  - Não podemos atualizar o código de um item já criado.
-  - Não podemos excluir um produto que ainda tem saldo.
-  - Não podemos deixar o saldo do item negativo.
-  - Podemos inativar um item ativo sem restrição
-  - Podemos ativar um item inativo sem restrição
-  - Não podemos atualizar item inativo
+  - O código do item deve ser único. (pk auto increment)
+  - Não podemos atualizar o código de um item já criado. (pk immutable)
+  - Não podemos excluir um produto que ainda tem saldo. (rule in code)
+  - Não podemos deixar o saldo do item negativo. (rule in code)
+  - Podemos inativar um item ativo sem restrição.
+  - Podemos ativar um item inativo sem restrição.
+  - Não podemos atualizar item inativo. (rule in code)
 
 
 *Requisitos

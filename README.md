@@ -14,8 +14,17 @@ Seguindo a ideia do TDD estou trabalhando em ciclos neste projeto em C#.
 - Visual Studio 2022 
 - C# 
 - xUnit 
+- Xunit.Gherkin.Quick
+- Gherkin
 - .NET 8 
 - Git 
 
 ## Referência
-- Microsoft learn - TDD [https://learn.microsoft.com/pt-br/training/modules/visual-studio-test-concepts/5-testing-schools-of-thought]
+- Microsoft learn - TDD | BDD [https://learn.microsoft.com/pt-br/training/modules/visual-studio-test-concepts/5-testing-schools-of-thought]
+
+## * **Bônus**
+## BDD
+A sigra *BDD* significa Behavior Driven Development (ou Desenvolvimento Orientado por Comportamento). <br>
+Ele é semelhante ao TDD mas com maior foco no uso de testes de aceitação para orientar o desenvolvimento em nível de negócio. <br>
+Ao contrário do TDD que verifica funcionalidades especificas o BDD verifica o comportamento. <br>
+Tem como objetivo testar o comportamento portanto ele é um teste de nível superior às dos testes de unidade.
