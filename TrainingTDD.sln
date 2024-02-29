@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0D4344BF-E0E
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "src\Domain\Domain.csproj", "{EF564ACE-9155-41E7-8627-E61657898B05}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UseCases.Tests", "tests\UseCases.Tests\UseCases.Tests.csproj", "{36C6416A-59EF-49F9-9332-268FB14B3324}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TDD.Tests", "tests\UseCases.Tests\TDD.Tests.csproj", "{36C6416A-59EF-49F9-9332-268FB14B3324}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{08B1B518-6407-4A97-A4C1-3C14B1AA8596}"
 EndProject
@@ -17,7 +17,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "src\Applicat
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "src\Infrastructure\Infrastructure.csproj", "{9E8CE0CD-584E-4F78-A8E4-3974715D1234}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BDD.Specs", "tests\BDD.Specs\BDD.Specs.csproj", "{53C281C5-8E58-4AC2-A38C-9DF31E97F49B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BDD.Specs", "tests\BDD.Specs\BDD.Specs.csproj", "{53C281C5-8E58-4AC2-A38C-9DF31E97F49B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

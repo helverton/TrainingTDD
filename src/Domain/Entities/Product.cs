@@ -13,6 +13,6 @@ namespace Domain.Entities
         public void SetName(string newName) => Name = newName;
         public void SetDescription(string newDescription) => Description = newDescription;
         public void SetStatus(ProductStatus newStatus) => Status = newStatus;
-        public void SetQuantity(int quantity) => Quantity = Quantity + quantity;
+        public void SetQuantity(int quantity) => Quantity = quantity;
 }
 }

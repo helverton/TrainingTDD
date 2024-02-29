@@ -11,8 +11,8 @@ namespace Application.Interfaces.Products
         bool UpdateName(int id, string name);
         bool UpdateDescription(int id, string description);
         bool UpdateStatus(int id, ProductStatus status);
-        bool StockEntry(int id, int quantity);
-        bool StockIssue(int id, int quantity);
+        bool StockEntry(Product produto, int quantity);
+        bool StockIssue(Product produto, int quantity);
         bool Delete(int id);
     }
 }

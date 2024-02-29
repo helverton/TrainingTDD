@@ -15,7 +15,8 @@ namespace Application.Services.Products
         {
             _product.SetName(name);
             _product.SetDescription(description);
-
+            _product.SetStatus(ProductStatus.Ativo);
+            _product.SetQuantity(0);
 
             DbStaticForTesting.products.Add(_product);
 
@@ -60,25 +61,69 @@ namespace Application.Services.Products
             return result;
         }
 
-        public bool StockEntry(int id, int quantity)
+        public bool StockEntry(Product product, int quantity)
         {
-            bool result = true;
+            if (product == null || quantity <= 0) return false;
 
-            DbStaticForTesting.products.Find(x => x.Id == id).SetQuantity(quantity);
+            try
+            {
+                int quantityAftr = DbStaticForTesting.products.Find(x => x.Id == product.Id).Quantity + quantity;
 
-            return result;
+                DbStaticForTesting.products.Find(x => x.Id == product.Id).SetQuantity(quantityAftr);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
-        public bool StockIssue(int id, int quantity)
+        public bool StockIssue(Product product, int quantity)
         {
-            bool result = true;
+            if (product == null || quantity >= 0) return false;
 
-            DbStaticForTesting.products.Find(x => x.Id == id).SetQuantity(quantity);
+            try
+            {
+                int quantityAftr = DbStaticForTesting.products.Find(x => x.Id == product.Id).Quantity + quantity;
 
-            return result;
+                if (quantityAftr > 0)
+                {
+                    DbStaticForTesting.products.Find(x => x.Id == product.Id).SetQuantity(quantityAftr);
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
         public bool Delete(int id)
+        {
+            try
+            {
+                _product = DbStaticForTesting.products.Find(x => x.Id == id);
+                if (_product.Quantity == 0)
+                {
+                    DbStaticForTesting.products.Remove(DbStaticForTesting.products.Find(x => x.Id == id));
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public bool ForcedDelete(int id)
         {
             bool result = true;
 
