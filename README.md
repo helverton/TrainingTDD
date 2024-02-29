@@ -14,13 +14,14 @@ Seguindo a ideia do TDD estou trabalhando em ciclos neste projeto em C#.
 - Visual Studio 2022 
 - C# 
 - xUnit 
-- Xunit.Gherkin.Quick
+- SpecFlow
 - Gherkin
 - .NET 8 
 - Git 
 
 ## Referência
 - Microsoft learn - TDD | BDD [https://learn.microsoft.com/pt-br/training/modules/visual-studio-test-concepts/5-testing-schools-of-thought]
+- SpecFlow [https://medium.com/globant/specflow-a-free-and-open-source-bdd-framework-for-net-55cc579a3a2b]
 
 ## * **Bônus**
 ## BDD
