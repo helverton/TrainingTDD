@@ -14,8 +14,25 @@ Seguindo a ideia do TDD estou trabalhando em ciclos neste projeto em C#.
 - Visual Studio 2022 
 - C# 
 - xUnit 
-- .NET 8 
+- SpecFlow
+- Gherkin
+- .NET 6 
 - Git 
+- TDD
+- BDD
+- Test Explorer
 
 ## Referência
-- Microsoft learn - TDD [https://learn.microsoft.com/pt-br/training/modules/visual-studio-test-concepts/5-testing-schools-of-thought]
+- Microsoft learn - TDD | BDD [https://learn.microsoft.com/pt-br/training/modules/visual-studio-test-concepts/5-testing-schools-of-thought]
+- SpecFlow [https://medium.com/globant/specflow-a-free-and-open-source-bdd-framework-for-net-55cc579a3a2b]
+
+## * **Bônus**
+## BDD
+A sigra *BDD* significa Behavior Driven Development (ou Desenvolvimento Orientado por Comportamento). <br>
+Ele é semelhante ao TDD mas com maior foco no uso de testes de aceitação para orientar o desenvolvimento em nível de negócio. <br>
+Ao contrário do TDD que verifica funcionalidades especificas o BDD verifica o comportamento. <br>
+Tem como objetivo testar o comportamento portanto ele é um teste de nível superior às dos testes de unidade.
+
+
+## Test Results
+<img src="https://github.com/helverton/TrainingTDD/blob/tests/doc/Test%20results.png">
